@@ -6,56 +6,187 @@
 <title>Class 10 SST & English Notes Hub</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,Arial,sans-serif}
 
-body{background:#f4f6fb;color:#222;transition:0.3s}
-.dark{background:#0f172a;color:#e5e7eb}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,Arial,sans-serif
+}
+
+body{
+background:#f4f6fb;
+color:#222;
+transition:0.3s;
+min-height:100vh;
+}
+
+.dark{
+background:#0f172a;
+color:#e5e7eb
+}
 
 /* Header */
+
 header{
-  background:linear-gradient(120deg,#4f46e5,#06b6d4);
-  color:white;text-align:center;padding:25px;font-size:28px;font-weight:bold;
+background:linear-gradient(120deg,#4f46e5,#06b6d4);
+color:white;
+text-align:center;
+padding:20px;
+font-size:24px;
+font-weight:bold;
 }
 
-/* Top Bar */
-.topbar{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:15px 20px;align-items:center}
-.searchBox{padding:10px;width:250px;border-radius:8px;border:none;box-shadow:0 2px 8px rgba(0,0,0,0.15);}
-.btn{padding:10px 15px;border:none;border-radius:8px;cursor:pointer;background:#4f46e5;color:white;font-weight:bold}
+/* Topbar */
 
-.tabs{display:flex;justify-content:center;flex-wrap:wrap;gap:15px;margin:10px}
-.tab{padding:10px 20px;background:white;border-radius:25px;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,0.15);font-weight:600}
-.activeTab{background:#4f46e5;color:white}
-
-.container{display:grid;grid-template-columns:300px 1fr;gap:20px;padding:20px}
-
-.chapterBox,.notes{
-  background:white;border-radius:12px;padding:20px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.1);
-  height:70vh;overflow-y:auto;
+.topbar{
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:10px;
+padding:10px 15px;
+align-items:center
 }
-.dark .chapterBox,.dark .notes,.dark .tab{background:#1e293b;color:white}
-.chapterBtn{display:block;width:100%;padding:10px;margin-bottom:10px;border:none;background:#eef2ff;border-radius:8px;cursor:pointer}
-.dark .chapterBtn{background:#334155;color:white}
-.downloadBtn{margin-top:15px}
 
-/* Fullscreen mode */
+.searchBox{
+padding:10px;
+width:250px;
+max-width:100%;
+border-radius:8px;
+border:none;
+box-shadow:0 2px 8px rgba(0,0,0,0.15);
+}
+
+.btn{
+padding:10px 15px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+background:#4f46e5;
+color:white;
+font-weight:bold;
+}
+
+/* Tabs */
+
+.tabs{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:10px;
+margin:10px;
+}
+
+.tab{
+padding:8px 14px;
+background:white;
+border-radius:20px;
+cursor:pointer;
+box-shadow:0 3px 10px rgba(0,0,0,0.15);
+font-weight:600;
+}
+
+.activeTab{
+background:#4f46e5;
+color:white;
+}
+
+/* Layout */
+
+.container{
+display:grid;
+grid-template-columns:280px 1fr;
+gap:15px;
+padding:15px;
+}
+
+.chapterBox,
+.notes{
+
+background:white;
+border-radius:12px;
+padding:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+
+height:70vh;
+overflow-y:auto;
+
+}
+
+.dark .chapterBox,
+.dark .notes,
+.dark .tab{
+background:#1e293b;
+color:white
+}
+
+.chapterBtn{
+display:block;
+width:100%;
+padding:12px;
+margin-bottom:8px;
+border:none;
+background:#eef2ff;
+border-radius:8px;
+cursor:pointer;
+}
+
+.dark .chapterBtn{
+background:#334155;
+color:white
+}
+
+iframe{
+max-width:100%;
+border-radius:8px;
+}
+
+/* Fullscreen */
+
 .fullscreenPDF{
- position:fixed;top:0;left:0;width:100vw;height:100vh;
- background:#fff;z-index:9999;padding:10px;
+position:fixed;
+top:0;
+left:0;
+width:100vw;
+height:100vh;
+background:#fff;
+z-index:9999;
+padding:10px;
 }
-.fullscreenPDF iframe{height:90vh !important}
+
+.fullscreenPDF iframe{
+height:90vh !important;
+}
 
 /* Footer */
-footer{
-  background:#111;color:#ddd;text-align:center;padding:25px;margin-top:30px;
-}
-footer a{color:#06b6d4;text-decoration:none}
 
-/* Mobile */
-@media(max-width:900px){
-.container{grid-template-columns:1fr}
-.searchBox{width:100%}
+footer{
+background:#111;
+color:#ddd;
+text-align:center;
+padding:25px;
+margin-top:20px;
 }
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.container{
+grid-template-columns:1fr;
+}
+
+.chapterBox,
+.notes{
+height:auto;
+}
+
+.btn{
+width:100%;
+}
+
+}
+
 </style>
 </head>
 
@@ -64,29 +195,37 @@ footer a{color:#06b6d4;text-decoration:none}
 <header>📘 Class 10 SST & English Notes Hub</header>
 
 <div class="topbar">
-  <input type="text" id="search" class="searchBox" placeholder="Search chapter...">
-  <button class="btn" onclick="toggleDark()">🌙 Dark Mode</button>
+<input type="text" id="search" class="searchBox" placeholder="Search chapter...">
+<button class="btn" onclick="toggleDark()">🌙 Dark Mode</button>
 </div>
+
 
 <div class="tabs">
-  <div class="tab activeTab" onclick="showSubject('history',this)">History</div>
-  <div class="tab" onclick="showSubject('civics',this)">Civics</div>
-  <div class="tab" onclick="showSubject('geography',this)">Geography</div>
-  <div class="tab" onclick="showSubject('economics',this)">Economics</div>
-  <div class="tab" onclick="showSubject('english', this)">English</div>
-
+<div class="tab activeTab" onclick="showSubject('history',this)">History</div>
+<div class="tab" onclick="showSubject('civics',this)">Civics</div>
+<div class="tab" onclick="showSubject('geography',this)">Geography</div>
+<div class="tab" onclick="showSubject('economics',this)">Economics</div>
+<div class="tab" onclick="showSubject('english',this)">English</div>
 </div>
+
 
 <div class="container">
-  <div class="chapterBox" id="chapters"></div>
-  <div class="notes" id="notes">
-    <h2>Welcome 👋</h2>
-    <p>Select a chapter to view notes.</p>
-  </div>
+
+<div class="chapterBox" id="chapters"></div>
+
+<div class="notes" id="notes">
+<h2>Welcome 👋</h2>
+<p>Select a chapter to view notes.</p>
 </div>
 
+</div>
+
+
+
 <script>
+
 const data={
+
 history:{
 "Rise of Nationalism in Europe":"pdf/rise-nationalism-europe.pdf",
 "Nationalism in India":"pdf/nationalism-india.pdf",
@@ -94,6 +233,7 @@ history:{
 "Age of Industrialisation":"pdf/industrialisation.pdf",
 "Print Culture":"pdf/print-culture.pdf"
 },
+
 civics:{
 "Power Sharing":"pdf/power-sharing.pdf",
 "Federalism":"pdf/federalism.pdf",
@@ -101,6 +241,7 @@ civics:{
 "Political Parties":"pdf/political-parties.pdf",
 "Outcomes of Democracy":"pdf/outcomes-democracy.pdf"
 },
+
 geography:{
 "Resources and Development":"pdf/resources-dev.pdf",
 "Forest and Wildlife":"pdf/forest-wildlife.pdf",
@@ -110,6 +251,7 @@ geography:{
 "Manufacturing Industries":"pdf/manufacturing-industries.pdf",
 "Lifeline of National Economy":"pdf/national-economy.pdf"
 },
+
 economics:{
 "Development":"pdf/development.pdf",
 "Sectors of Economy":"pdf/sectors.pdf",
@@ -117,90 +259,125 @@ economics:{
 "Globalisation":"pdf/globalisation.pdf",
 "Consumer Rights":"pdf/consumer-rights.pdf"
 },
- // NEW SUBJECT: English
-  english: {
-    "English Language - Grammar":"pdf/english-language-grammar.pdf",
-    "English Language - Grammar1":"pdf/english-language-grammar1.pdf",
-    "English Language - Writing Skills (Yet not uploaded)":"pdf/english-language-writing.pdf",
-    "English Literature - Chapter 1 (Yet not uploaded)":"pdf/english-lit-ch1.pdf",
-    "English Literature - Chapter 2 (Yet not uploaded)":"pdf/english-lit-ch2.pdf",
-    "English Literature - Chapter 3 (Yet not uploaded)":"pdf/english-lit-ch3.pdf"
-  }
+
+english:{
+"English Grammar":"pdf/english-language-grammar.pdf",
+"English Grammar 2":"pdf/english-language-grammar1.pdf"
+}
+
 }
 
 let currentSubject="history";
+
 const chapterBox=document.getElementById("chapters");
 const notesBox=document.getElementById("notes");
 
 function showSubject(subject,el){
+
 currentSubject=subject;
+
 document.querySelectorAll(".tab").forEach(t=>t.classList.remove("activeTab"));
+
 el.classList.add("activeTab");
+
 loadChapters();
+
 }
+
 
 function loadChapters(){
+
 chapterBox.innerHTML="";
+
 Object.keys(data[currentSubject]).forEach(ch=>{
+
 let btn=document.createElement("button");
+
 btn.className="chapterBtn";
+
 btn.innerText=ch;
+
 btn.onclick=()=>showNotes(ch,currentSubject);
+
 chapterBox.appendChild(btn);
+
 });
+
 }
 
-function showNotes(ch,subject){
-let pdfPath = data[subject][ch];
-notesBox.innerHTML=`
-<h2>${ch}</h2>
-<h4>${subject.toUpperCase()}</h4>
 
-<div id="pdfContainer">
-<button class="btn" onclick="toggleFullscreen()">📄 Full Screen</button>
-<br><br>
-<iframe id="pdfFrame" src="${pdfPath}" width="100%" height="600px"></iframe>
+
+function showNotes(ch,subject){
+
+let pdfPath=data[subject][ch];
+
+let preview=pdfPath+"#page=1&toolbar=0&navpanes=0";
+
+notesBox.innerHTML=`
+
+<h2>${ch}</h2>
+
+<div style="height:500px;overflow:hidden">
+
+<iframe src="${preview}" width="100%" height="900"></iframe>
+
 </div>
 
 <br>
-<a class="btn downloadBtn" href="${pdfPath}" download>⬇ Download PDF</a>
+
+<a class="btn" href="${pdfPath}" download>⬇ Download Full PDF</a>
+
 `;
+
 }
 
-/* FULLSCREEN FUNCTION */
-function toggleFullscreen(){
-let elem=document.getElementById("pdfContainer");
-elem.classList.toggle("fullscreenPDF");
-if(!document.fullscreenElement){
-elem.requestFullscreen().catch(()=>{});
-}else{
-document.exitFullscreen();
-}
-}
 
-/* GLOBAL SEARCH */
+
 document.getElementById("search").addEventListener("input",function(e){
+
 let term=e.target.value.toLowerCase();
+
 chapterBox.innerHTML="";
+
 if(term===""){loadChapters();return;}
-for(let subject in data){
-for(let chapter in data[subject]){
-if(chapter.toLowerCase().includes(term)){
+
+for(let s in data){
+
+for(let c in data[s]){
+
+if(c.toLowerCase().includes(term)){
+
 let btn=document.createElement("button");
+
 btn.className="chapterBtn";
-btn.innerText=`${chapter} (${subject})`;
-btn.onclick=()=>showNotes(chapter,subject);
+
+btn.innerText=c;
+
+btn.onclick=()=>showNotes(c,s);
+
 chapterBox.appendChild(btn);
+
 }
+
 }
+
 }
+
 });
 
-function toggleDark(){document.body.classList.toggle("dark");}
+
+function toggleDark(){
+
+document.body.classList.toggle("dark");
+
+}
+
 loadChapters();
+
 </script>
 
-<!-- CONTACT + FOOTER -->
+
+
 <footer>
 <h3>📞 Contact</h3>
 <p>Email: rishabhvachheta@gmail.com</p>
