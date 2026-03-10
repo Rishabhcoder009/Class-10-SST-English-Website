@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Class 10 SST & English Notes Hub</title>
 
 <style>
@@ -23,57 +24,69 @@ min-height:100vh;
 
 .dark{
 background:#0f172a;
-color:#e5e7eb
+color:#e5e7eb;
 }
+
+/* HEADER */
 
 header{
 background:linear-gradient(120deg,#4f46e5,#06b6d4);
 color:white;
 text-align:center;
-padding:18px;
-font-size:22px;
+padding:25px;
+font-size:28px;
 font-weight:bold;
 }
 
+/* TOP BAR */
+
 .topbar{
 display:flex;
+justify-content:space-between;
 flex-wrap:wrap;
 gap:10px;
-padding:10px;
-justify-content:space-between;
+padding:15px 20px;
+align-items:center;
 }
 
 .searchBox{
-padding:10px;
-width:250px;
-max-width:100%;
-border-radius:8px;
+padding:12px;
+width:260px;
+border-radius:10px;
 border:none;
+box-shadow:0 3px 10px rgba(0,0,0,0.2);
+font-size:15px;
 }
 
 .btn{
-padding:10px;
+padding:12px 18px;
 border:none;
-border-radius:8px;
+border-radius:10px;
+cursor:pointer;
 background:#4f46e5;
 color:white;
-cursor:pointer;
+font-weight:bold;
+font-size:15px;
 }
+
+/* SUBJECT TABS */
 
 .tabs{
 display:flex;
-flex-wrap:wrap;
-gap:8px;
 justify-content:center;
+flex-wrap:wrap;
+gap:15px;
 margin:10px;
 }
 
 .tab{
-padding:8px 12px;
+padding:12px 22px;
 background:white;
-border-radius:20px;
+border-radius:25px;
 cursor:pointer;
-box-shadow:0 2px 8px rgba(0,0,0,0.2);
+box-shadow:0 3px 10px rgba(0,0,0,0.15);
+font-weight:bold;
+font-size:15px;
 }
 
 .activeTab{
@@ -81,36 +94,58 @@ background:#4f46e5;
 color:white;
 }
 
+/* LAYOUT */
+
 .container{
 display:grid;
-grid-template-columns:260px 1fr;
-gap:10px;
-padding:10px;
+grid-template-columns:300px 1fr;
+gap:20px;
+padding:20px;
 }
 
 .chapterBox,
 .notes{
 background:white;
-border-radius:10px;
-padding:10px;
+border-radius:12px;
+padding:20px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
 min-height:60vh;
 overflow:auto;
 }
 
+.dark .chapterBox,
+.dark .notes,
+.dark .tab{
+background:#1e293b;
+color:white;
+}
+
 .chapterBtn{
+display:block;
 width:100%;
-padding:10px;
-margin-bottom:6px;
+padding:12px;
+margin-bottom:10px;
 border:none;
 background:#eef2ff;
-border-radius:6px;
+border-radius:8px;
 cursor:pointer;
+font-size:14px;
 }
+
+.dark .chapterBtn{
+background:#334155;
+color:white;
+}
+
+/* PDF */
 
 embed{
 width:100%;
 height:70vh;
+border-radius:10px;
 }
+
+/* FULLSCREEN */
 
 .fullscreenPDF{
 position:fixed;
@@ -123,20 +158,26 @@ z-index:9999;
 padding:10px;
 }
 
+/* FOOTER */
+
 footer{
 background:#111;
 color:#ddd;
 text-align:center;
-padding:20px;
-margin-top:20px;
+padding:25px;
+margin-top:30px;
 }
 
-/* mobile */
+/* MOBILE */
 
 @media(max-width:900px){
 
 .container{
 grid-template-columns:1fr;
+}
+
+.searchBox{
+width:100%;
 }
 
 embed{
@@ -153,28 +194,64 @@ height:65vh;
 <header>📘 Class 10 SST & English Notes Hub</header>
 
 <div class="topbar">
-<input id="search" class="searchBox" placeholder="Search chapter">
-<button class="btn" onclick="toggleDark()">Dark</button>
+
+<input id="search"
+class="searchBox"
+placeholder="Search chapter...">
+
+<button class="btn"
+onclick="toggleDark()">
+🌙 Theme
+</button>
+
 </div>
 
+
 <div class="tabs">
-<div class="tab activeTab" onclick="showSubject('history',this)">History</div>
-<div class="tab" onclick="showSubject('civics',this)">Civics</div>
-<div class="tab" onclick="showSubject('geography',this)">Geography</div>
-<div class="tab" onclick="showSubject('economics',this)">Economics</div>
-<div class="tab" onclick="showSubject('english',this)">English</div>
+
+<div class="tab activeTab"
+onclick="showSubject('history',this)">
+History
 </div>
+
+<div class="tab"
+onclick="showSubject('civics',this)">
+Civics
+</div>
+
+<div class="tab"
+onclick="showSubject('geography',this)">
+Geography
+</div>
+
+<div class="tab"
+onclick="showSubject('economics',this)">
+Economics
+</div>
+
+<div class="tab"
+onclick="showSubject('english',this)">
+English
+</div>
+
+</div>
+
 
 <div class="container">
 
-<div id="chapters" class="chapterBox"></div>
+<div id="chapters"
+class="chapterBox"></div>
 
-<div id="notes" class="notes">
-<h2>Welcome</h2>
+<div id="notes"
+class="notes">
+
+<h2>Welcome 👋</h2>
 Select chapter
+
 </div>
 
 </div>
+
 
 <script>
 
@@ -253,15 +330,13 @@ notesBox.innerHTML=`
 
 <button class="btn"
 onclick="toggleFullscreen()">
-Full Screen
+📄 Full Screen
 </button>
 
 <br><br>
 
-<embed
-src="${pdf}"
-type="application/pdf"
-/>
+<embed src="${pdf}"
+type="application/pdf">
 
 </div>
 
@@ -270,7 +345,7 @@ type="application/pdf"
 <a class="btn"
 href="${pdf}"
 target="_blank">
-Open / Download PDF
+⬇ Download / Open PDF
 </a>
 
 `
@@ -330,8 +405,6 @@ loadChapters()
 
 <script>
 
-/* disable inspect */
-
 document.addEventListener(
 "contextmenu",
 e=>e.preventDefault()
@@ -356,7 +429,7 @@ e.preventDefault()
 
 <footer>
 
-Contact<br>
+📞 Contact<br>
 rishabhvachheta@gmail.com
 
 </footer>
