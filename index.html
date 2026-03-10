@@ -26,8 +26,6 @@ background:#0f172a;
 color:#e5e7eb
 }
 
-/* Header */
-
 header{
 background:linear-gradient(120deg,#4f46e5,#06b6d4);
 color:white;
@@ -36,8 +34,6 @@ padding:20px;
 font-size:24px;
 font-weight:bold;
 }
-
-/* Topbar */
 
 .topbar{
 display:flex;
@@ -67,8 +63,6 @@ color:white;
 font-weight:bold;
 }
 
-/* Tabs */
-
 .tabs{
 display:flex;
 justify-content:center;
@@ -91,8 +85,6 @@ background:#4f46e5;
 color:white;
 }
 
-/* Layout */
-
 .container{
 display:grid;
 grid-template-columns:280px 1fr;
@@ -102,15 +94,12 @@ padding:15px;
 
 .chapterBox,
 .notes{
-
 background:white;
 border-radius:12px;
 padding:15px;
 box-shadow:0 5px 20px rgba(0,0,0,0.1);
-
 height:70vh;
 overflow-y:auto;
-
 }
 
 .dark .chapterBox,
@@ -141,8 +130,6 @@ max-width:100%;
 border-radius:8px;
 }
 
-/* Fullscreen */
-
 .fullscreenPDF{
 position:fixed;
 top:0;
@@ -158,8 +145,6 @@ padding:10px;
 height:90vh !important;
 }
 
-/* Footer */
-
 footer{
 background:#111;
 color:#ddd;
@@ -167,8 +152,6 @@ text-align:center;
 padding:25px;
 margin-top:20px;
 }
-
-/* MOBILE */
 
 @media(max-width:900px){
 
@@ -199,7 +182,6 @@ width:100%;
 <button class="btn" onclick="toggleDark()">🌙 Dark Mode</button>
 </div>
 
-
 <div class="tabs">
 <div class="tab activeTab" onclick="showSubject('history',this)">History</div>
 <div class="tab" onclick="showSubject('civics',this)">Civics</div>
@@ -207,7 +189,6 @@ width:100%;
 <div class="tab" onclick="showSubject('economics',this)">Economics</div>
 <div class="tab" onclick="showSubject('english',this)">English</div>
 </div>
-
 
 <div class="container">
 
@@ -219,7 +200,6 @@ width:100%;
 </div>
 
 </div>
-
 
 
 <script>
@@ -246,26 +226,20 @@ geography:{
 "Resources and Development":"pdf/resources-dev.pdf",
 "Forest and Wildlife":"pdf/forest-wildlife.pdf",
 "Water Resources":"pdf/water-resources.pdf",
-"Agriculture":"pdf/agriculture.pdf",
-"Minerals and Energy":"pdf/minerals-energy.pdf",
-"Manufacturing Industries":"pdf/manufacturing-industries.pdf",
-"Lifeline of National Economy":"pdf/national-economy.pdf"
+"Agriculture":"pdf/agriculture.pdf"
 },
 
 economics:{
 "Development":"pdf/development.pdf",
 "Sectors of Economy":"pdf/sectors.pdf",
-"Money and Credit":"pdf/money-credit.pdf",
-"Globalisation":"pdf/globalisation.pdf",
-"Consumer Rights":"pdf/consumer-rights.pdf"
+"Money and Credit":"pdf/money-credit.pdf"
 },
 
 english:{
-"English Grammar":"pdf/english-language-grammar.pdf",
-"English Grammar 2":"pdf/english-language-grammar1.pdf"
+"English Grammar":"pdf/english-language-grammar.pdf"
 }
 
-}
+};
 
 let currentSubject="history";
 
@@ -283,7 +257,6 @@ el.classList.add("activeTab");
 loadChapters();
 
 }
-
 
 function loadChapters(){
 
@@ -305,33 +278,39 @@ chapterBox.appendChild(btn);
 
 }
 
-
-
 function showNotes(ch,subject){
 
 let pdfPath=data[subject][ch];
-
-let preview=pdfPath+"#page=1&toolbar=0&navpanes=0";
 
 notesBox.innerHTML=`
 
 <h2>${ch}</h2>
 
-<div style="height:500px;overflow:hidden">
+<div id="pdfContainer">
 
-<iframe src="${preview}" width="100%" height="900"></iframe>
+<button class="btn" onclick="toggleFullscreen()">📄 Full Screen</button>
+
+<br><br>
+
+<iframe src="${pdfPath}" width="100%" height="600px"></iframe>
 
 </div>
 
 <br>
 
-<a class="btn" href="${pdfPath}" download>⬇ Download Full PDF</a>
+<a class="btn" href="${pdfPath}" download>⬇ Download PDF</a>
 
 `;
 
 }
 
+function toggleFullscreen(){
 
+let elem=document.getElementById("pdfContainer");
+
+elem.classList.toggle("fullscreenPDF");
+
+}
 
 document.getElementById("search").addEventListener("input",function(e){
 
@@ -365,7 +344,6 @@ chapterBox.appendChild(btn);
 
 });
 
-
 function toggleDark(){
 
 document.body.classList.toggle("dark");
@@ -376,6 +354,28 @@ loadChapters();
 
 </script>
 
+
+<!-- DISABLE INSPECT -->
+
+<script>
+
+document.addEventListener("contextmenu", e => e.preventDefault());
+
+document.addEventListener("keydown", function(e) {
+
+if (e.key === "F12") e.preventDefault();
+
+if (e.ctrlKey && e.shiftKey && e.key === "I") e.preventDefault();
+
+if (e.ctrlKey && e.key === "U") e.preventDefault();
+
+if (e.ctrlKey && e.key === "S") e.preventDefault();
+
+if (e.ctrlKey && e.shiftKey && e.key === "C") e.preventDefault();
+
+});
+
+</script>
 
 
 <footer>
